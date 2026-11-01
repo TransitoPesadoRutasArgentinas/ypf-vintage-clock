@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reloj YPF Vintage</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;
+  background:radial-gradient(ellipse at center,#42413a,#171b1d);
+   display:flex;align-items:center;justify-content:center;
+    font-family:Arial,sans-serif;
+     padding:22px 8px;
+     }
+     .escena{position:relative;width:280px;max-width:90vw;padding-top:105px}
+     .logo{
+      position:absolute;top:0;left:50%;
+       transform:translateX(-50%);
+        width:146px;height:112px;border-radius:50%;
+         background:#f0eee0;border:9px double #1687bc;
+          box-shadow:0 6px 0 #26343b,0 8px 15px #1118;
+           display:flex;align-items:center;justify-content:center;
+            z-index:3;
+            }
+            .logo span{
+             font-family:Impact,'Arial Narrow',sans-serif;
+              font-size:65px;font-weight:900;letter-spacing:-6px;
+               color:#19232b;transform:scaleX(.85);
+               }
+               .surtidor{
+                position:relative;height:510px;
+                 border:9px ridge #818b89;
+                  border-radius:9px 9px 4px 4px;
+                   background:
+                    radial-gradient(ellipse at 8% 18%,#ab6437 0%,transparent 12%),
+                     radial-gradient(ellipse at 94% 73%,#884b2d 0%,transparent 9%),
+                      repeating-linear-gradient(105deg,transparent 0 9px,#ffffff0a 10px 12px),
+                       linear-gradient(95deg,#07507b,#1686bd 23%,#0874ad 75%,#03446e);
+                        box-shadow:inset 8px 0 13px #001b3980,
+                         inset -8px 0 15px #001b3990,
+                          15px 16px 22px #0009;
+                          }
+                          .surtidor:before{
+                           content:"";position:absolute;inset:8px;
+                            border:1px solid #ffffff35;pointer-events:none;
+                            }
+                            .tornillo{
+                             position:absolute;width:10px;height:10px;
+                              border-radius:50%;background:#a2a29a;
+                               border:2px solid #555b57;
+                                box-shadow:1px 1px 3px #0008;
+                                }
+                                .tornillo:after{
+                                 content:"";position:absolute;top:2px;left:1px;
+                                  width:5px;border-top:1px solid #333;
+                                   transform:rotate(35deg);
+                                   }
+                                   .t1{top:12px;left:10px}.t2{top:12px;right:10px}
+                                   .t3{bottom:12px;left:10px}.t4{bottom:12px;right:10px}
+                                   .panel{
+                                    position:absolute;top:88px;left:17px;right:17px;
+                                     padding:14px 9px 18px;
+                                      border:5px ridge #b9b9a9;border-radius:22px;
+                                       background:linear-gradient(120deg,#a5a392,#f5f0da 25%,#d6d0b8 80%,#8e9189);
+                                        box-shadow:inset 0 3px 8px #0004,3px 5px 8px #0006;
+                                         text-align:center;
+                                         }
+                                         .rotulo{
+                                          font-size:11px;font-weight:bold;letter-spacing:2px;
+                                           color:#303a3b;margin:5px 0;
+                                           }
+                                           .contador{
+                                            display:flex;justify-content:center;gap:5px;
+                                             margin:5px 0 12px;
+                                             }
+                                             .digito{
+                                              position:relative;width:27px;height:40px;
+                                               
+                                        background:linear-gradient(to bottom,#ded9c7 0%,#f5f0df 45%,#ded9c7 75%,#bbb9a9 100%);
+                                              
+                                                border:2px solid #666c6a;border-radius:4px;
+                                                 overflow:hidden;
+                                                  box-shadow:inset 2px 2px 4px #0006,1px 1px 2px #fff8;
+                                                  }
+                                                  .digito::after {
+                                                      content: none !important;
+                                                      }
+                                                  
+                                                    .digito span{
+                                                     display:block;line-height:36px;font-size:27px;
+                                                      font-family:Georgia,serif;font-weight:bold;color:#222;
+                                                       text-shadow:1px 1px #fff8;
+                                                       }
+                                                       .digito.girando span{animation:giro .38s ease-in-out}
+                                                       @keyframes giro{
+                                                        0%{transform:translateY(-30px);opacity:.3}
+                                                         65%{transform:translateY(4px)}
+                                                          100%{transform:translateY(0);opacity:1}
+                                                          }
+                                                          .marca{
+                                                           position:absolute;bottom:85px;left:50%;
+                                                            transform:translateX(-50%);
+                                                             width:112px;height:112px;border-radius:50%;
+                                                              border:6px double #b9d9e3;
+                                                               background:#e8e5d5;
+                                                                display:flex;flex-direction:column;align-items:center;
+                                                                 justify-content:center;
+                                                                  box-shadow:0 3px 8px #0005;
+                                                                  }
+                                                                  .marca b{font-family:Impact,Arial,sans-serif;font-size:43px;letter-spacing:-3px}
+                                                                  .marca small{font-size:10px;letter-spacing:2px;color:#167bb0;font-weight:bold}
+                                                                  .manguera{
+                                                                   position:absolute;left:calc(100% - 2px);top:165px;
+                                                                    width:70px;height:250px;
+                                                                     border:9px solid #141719;border-left:0;
+                                                                      border-radius:0 65px 65px 0;
+                                                                       transform:rotate(7deg);z-index:-1;
+                                                                       }
+                                                                       .pico{
+                                                                        position:absolute;right:-26px;top:153px;
+                                                                         width:17px;height:90px;background:#181d1f;
+                                                                          border-radius:6px;transform:rotate(-12deg);
+                                                                           box-shadow:2px 2px 3px #0007;
+                                                                           }
+                                                                           .base{
+                                                                            height:15px;background:linear-gradient(#5c696b,#202a30);
+                                                                             border-radius:3px;margin:0 -8px;
+                                                                             }
+                                                                             /* Ajuste del visor */
+                                                                             .surtidor {
+                                                                               padding-bottom: 35px;
+                                                                               }
+
+                                                                               .visor {
+                                                                                 position: relative;
+                                                                                   z-index: 2;
+                                                                                   }
+
+                                                                                   /* Ajuste del visor */
+                                                                                   .surtidor {
+                                                                                     padding-bottom: 35px;
+                                                                                     }
+
+                                                                                     .visor {
+                                                                                       position: relative;
+                                                                                         z-index: 2;
+                                                                                         }
+
+                                                                                    /* Emblema inferior más abajo */
+                                                                                    .marca {
+                                                                                      transform: translateY(55px);
+                                                                                      }
+
+                                                                                  /* RODILLOS MECÁNICOS ANTIGUOS */
+                                                                                  .digito {
+                                                                                    background: linear-gradient(
+                                                                                        to bottom,
+                                                                                            #77766c 0%,
+                                                                                                #e5dfc9 18%,
+                                                                                                    #f4eedb 45%,
+                                                                                                        #a5a394 49%,
+                                                                                                            #555850 50%,
+                                                                                                                #d9d4bf 54%,
+                                                                                                                    #f0ead7 82%,
+                                                                                                                        #85867c 100%
+                                                                                                                          ) !important;
+                                                                                                                            border: 3px solid #666b68 !important;
+                                                                                                                              border-radius: 5px !important;
+                                                                                                                                box-shadow:
+                                                                                                                                    inset 0 3px 7px #3338,
+                                                                                                                                        inset 0 -4px 6px #3337,
+                                                                                                                                            1px 2px 3px #0005 !important;
+                                                                                                                                              overflow: hidden;
+                                                                                                                                              }
+
+                                                                                                                                              .digito::after {
+                                                                                                                                                content: "";
+                                                                                                                                                  position: absolute;
+                                                                                                                                                    left: 0;
+                                                                                                                                                      right: 0;
+                                                                                                                                                        top: 50%;
+                                                                                                                                                          height: 2px;
+                                                                                                                                                            background: #333a36;
+                                                                                                                                                              box-shadow: 0 1px 2px #fff8;
+                                                                                                                                                                pointer-events: none;
+                                                                                                                                                                }
+
+                                                                                                                                                                .digito span {
+                                                                                                                                                                  color: #252723 !important;
+                                                                                                                                                                    font-family: Georgia, serif !important;
+                                                                                                                                                                      font-weight: 900 !important;
+                                                                                                                                                                        text-shadow: 1px 1px 1px #fff9;
+                                                                                                                                                                        }
+                                                                  
+                                                                                                                                                                        /* GIRO DE RODILLOS MECÁNICOS */
+                                                                                                                                                                        @keyframes giroMecanico {
+                                                                                                                                                                          0% {
+                                                                                                                                                                              transform: translateY(-70%);
+                                                                                                                                                                                  filter: blur(2px);
+                                                                                                                                                                                    }
+                                                                                                                                                                                      65% {
+                                                                                                                                                                                          transform: translateY(5%);
+                                                                                                                                                                                              filter: blur(0);
+                                                                                                                                                                                                }
+                                                                                                                                                                                                  85% {
+                                                                                                                                                                                                      transform: translateY(-3%);
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                          100% {
+                                                                                                                                                                                                              transform: translateY(0);
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                                }
+
+                                                                                                                                                                                                                .digito span.girando {
+                                                                                                                                                                                                                  display: inline-block;
+                                                                                                                                                                                                                    animation: giroMecanico 0.45s ease-out;
+                                                                                                                                                                                                                    }
+                                                                              
+                                                                                                                                                                                                                    /* Eliminar raya fija del contador */
+                                                                                                                                                                                                                    .digito::after {
+                                                                                                                                                                                                                      display: none !important;
+                                                                                                                                                                                                                      }
+
+
+                                                                           /* Quitar raya fija del rodillo */
+                                                                           .digito::after {
+                                                                             display: none !important;
+                                                                               content: none !important;
+                                                                               }
+
+                                                                               .digito {
+                                                                                 background: linear-gradient(
+                                                                                     to bottom,
+                                                                                         #ded9c7,
+                                                                                             #f5f0df 45%,
+                                                                                                 #ded9c7 75%,
+                                                                                                     #bbb9a9
+                                                                                                       ) !important;
+                                                                                                       }
+
+
+                                                                           /* Movimiento de rodillos mecánicos */
+                                                                           .digito.girando span {
+                                                                             animation: rodilloYPF 0.55s ease-in-out;
+                                                                             }
+
+                                                                             @keyframes rodilloYPF {
+                                                                               0% {
+                                                                                   transform: translateY(-100%);
+                                                                                     }
+                                                                                       50% {
+                                                                                           transform: translateY(12%);
+                                                                                             }
+                                                                                               100% {
+                                                                                                   transform: translateY(0);
+                                                                                                     }
+                                                                                                     }
+
+                                                                              /* Ajustar surtidor completo al celular */
+                                                                              @media (max-width: 600px) {
+                                                                                body {
+                                                                                    min-height: 100dvh;
+                                                                                        padding: 8px;
+                                                                                            overflow: hidden;
+                                                                                              }
+
+                                                                                                .escena {
+                                                                                                    transform: scale(
+                                                                                                          min(1, calc((100dvh - 30px) / 640))
+                                                                                                              );
+                                                                                                                  transform-origin: center center;
+                                                                                                                      flex-shrink: 0;
+                                                                                                                        }
+                                                                                                                        }
+                                                                                                                                                 
+                                                                             </style>
+                                                                             </head>
+                                                                             <body>
+                                                                             <div class="escena">
+                                                                              <div class="logo"><span>YPF</span></div>
+                                                                               <div class="manguera"></div>
+                                                                                <div class="pico"></div>
+                                                                                 <div class="surtidor">
+                                                                                   <i class="tornillo t1"></i><i class="tornillo t2"></i>
+                                                                                     <i class="tornillo t3"></i><i class="tornillo t4"></i>
+                                                                                       <div class="panel">
+                                                                                          <div class="rotulo">HORAS</div>
+                                                                                             <div class="contador" id="horas"></div>
+                                                                                                <div class="rotulo">MINUTOS</div>
+                                                                                                   <div class="contador" id="minutos"></div>
+                                                                                                      <div class="rotulo">SEGUNDOS</div>
+                                                                                                         <div class="contador" id="segundos"></div>
+                                                                                                           </div>
+                                                                                                             <div class="marca"><b>YPF</b><small>SÚPER</small></div>
+                                                                                                              </div>
+                                                                                                               <div class="base"></div>
+                                                                                                               </div>
+                                                                                                               <script>
+                                                                                                               const anterior={};
+                                                                                                               function actualizar(){
+                                                                                                                const ahora=new Date();
+                                                                                                                 const valores={
+                                                                                                                   horas:String(ahora.getHours()).padStart(2,"0"),
+                                                                                                                     minutos:String(ahora.getMinutes()).padStart(2,"0"),
+                                                                                                                       segundos:String(ahora.getSeconds()).padStart(2,"0")
+                                                                                                                        };
+                                                                                                                         for(const [nombre,valor] of Object.entries(valores)){
+                                                                                                                           const cont=document.getElementById(nombre);
+                                                                                                                             if(!cont.children.length){
+                                                                                                                                for(let i=0;i<2;i++){
+                                                                                                                                    const d=document.createElement("div");
+                                                                                                                                        d.className="digito";
+                                                                                                                                            d.innerHTML="<span></span>";
+                                                                                                                                                cont.appendChild(d);
+                                                                                                                                                   }
+                                                                                                                                                     }
+                                                                                                                                                       [...cont.children].forEach((d,i)=>{
+                                                                                                                                                          if(anterior[nombre]?.[i]!==valor[i]){
+                                                                                                                                                              const span=d.querySelector("span");
+                                                                                                                                                              span.textContent=valor[i];
+                                                                                                                                                                  d.classList.remove("girando");
+                                                                                                                                                                      void d.offsetWidth;
+                                                                                                                                                                          d.classList.add("girando");
+                                                                                                                                                                             }
+                                                                                                                                                                               });
+                                                                                                                                                                                 anterior[nombre]=valor;
+                                                                                                                                                                                  }
+                                                                                                                                                                                  }
+                                                                                                                                                                                  actualizar();
+                                                                                                                                                                                  setInterval(actualizar,200);
+                                                                                                                                                                                  </script>
+                                                                                                                                                                                  </body>
+                                                                                                                                                                                  </html>
