@@ -1,151 +1,262 @@
-
+    
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102c45">
 <title>Reloj YPF Vintage</title>
 <link rel="manifest" href="./manifest.json">
 <style>
 *{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Georgia,serif}
 body{
- margin:0;min-height:100vh;
-  background:radial-gradient(ellipse at center,#42413a,#171b1d);
-   display:flex;align-items:center;justify-content:center;
-    font-family:Arial,sans-serif;
-     padding:22px 8px;
-     }
-     .escena{position:relative;width:280px;max-width:90vw;padding-top:105px}
-     .logo{
-      position:absolute;top:0;left:50%;
-       transform:translateX(-50%);
-        width:146px;height:112px;border-radius:50%;
-         background:#f0eee0;border:9px double #1687bc;
-          box-shadow:0 6px 0 #26343b,0 8px 15px #1118;
-           display:flex;align-items:center;justify-content:center;
-            z-index:3;
-            }
-            .logo span{
-             font-family:Impact,'Arial Narrow',sans-serif;
-              font-size:65px;font-weight:900;letter-spacing:-6px;
-               color:#19232b;transform:scaleX(.85);
-               }
-               .surtidor{
-                position:relative;height:510px;
-                 border:9px ridge #818b89;
-                  border-radius:9px 9px 4px 4px;
-                   background:
-                    radial-gradient(ellipse at 8% 18%,#ab6437 0%,transparent 12%),
-                     radial-gradient(ellipse at 94% 73%,#884b2d 0%,transparent 9%),
-                      repeating-linear-gradient(105deg,transparent 0 9px,#ffffff0a 10px 12px),
-                       linear-gradient(95deg,#07507b,#1686bd 23%,#0874ad 75%,#03446e);
-                        box-shadow:inset 8px 0 13px #001b3980,
-                         inset -8px 0 15px #001b3990,
-                          15px 16px 22px #0009;
-                          }
-                          .surtidor:before{
-                           content:"";position:absolute;inset:8px;
-                            border:1px solid #ffffff35;pointer-events:none;
-                            }
-                            .tornillo{
-                             position:absolute;width:10px;height:10px;
-                              border-radius:50%;background:#a2a29a;
-                               border:2px solid #555b57;
-                                box-shadow:1px 1px 3px #0008;
-                                }
-                                .tornillo:after{
-                                 content:"";position:absolute;top:2px;left:1px;
-                                  width:5px;border-top:1px solid #333;
-                                   transform:rotate(35deg);
-                                   }
-                                   .t1{top:12px;left:10px}.t2{top:12px;right:10px}
-                                   .t3{bottom:12px;left:10px}.t4{bottom:12px;right:10px}
-                                   .panel{
-                                    position:absolute;top:88px;left:17px;right:17px;
-                                     padding:14px 9px 18px;
-                                      border:5px ridge #b9b9a9;border-radius:22px;
-                                       background:linear-gradient(120deg,#a5a392,#f5f0da 25%,#d6d0b8 80%,#8e9189);
-                                        box-shadow:inset 0 3px 8px #0004,3px 5px 8px #0006;
-                                         text-align:center;
-                                         }
-                                         .rotulo{
-                                          font-size:11px;font-weight:bold;letter-spacing:2px;
-                                           color:#303a3b;margin:5px 0;
-                                           }
-                                           .contador{
-                                            display:flex;justify-content:center;gap:5px;
-                                             margin:5px 0 12px;
-                                             }
-                                             .digito{
-                                              position:relative;width:27px;height:40px;
-                                               
-                                        background:linear-gradient(to bottom,#ded9c7 0%,#f5f0df 45%,#ded9c7 75%,#bbb9a9 100%);
-                                              
-                                                border:2px solid #666c6a;border-radius:4px;
-                                                 overflow:hidden;
-                                                  box-shadow:inset 2px 2px 4px #0006,1px 1px 2px #fff8;
-                                                  }
-                                                  .digito::after {
-                                                      content: none !important;
-                                                      }
-                                                  
-                                                    .digito span{
-                                                     display:block;line-height:36px;font-size:27px;
-                                                      font-family:Georgia,serif;font-weight:bold;color:#222;
-                                                       text-shadow:1px 1px #fff8;
-                                                       }
-                                                       .digito.girando span{animation:giro .38s ease-in-out}
-                                                       @keyframes giro{
-                                                        0%{transform:translateY(-30px);opacity:.3}
-                                                         65%{transform:translateY(4px)}
-                                                          100%{transform:translateY(0);opacity:1}
-                                                          }
-                                                          .marca{
-                                                           position:absolute;bottom:85px;left:50%;
-                                                            transform:translateX(-50%);
-                                                             width:112px;height:112px;border-radius:50%;
-                                                              border:6px double #b9d9e3;
-                                                               background:#e8e5d5;
-                                                                display:flex;flex-direction:column;align-items:center;
-                                                                 justify-content:center;
-                                                                  box-shadow:0 3px 8px #0005;
-                                                                  }
-                                                                  .marca b{font-family:Impact,Arial,sans-serif;font-size:43px;letter-spacing:-3px}
-                                                                  .marca small{font-size:10px;letter-spacing:2px;color:#167bb0;font-weight:bold}
-                                                                  .manguera{
-                                                                   position:absolute;left:calc(100% - 2px);top:165px;
-                                                                    width:70px;height:250px;
-                                                                     border:9px solid #141719;border-left:0;
-                                                                      border-radius:0 65px 65px 0;
-                                                                       transform:rotate(7deg);z-index:-1;
-                                                                       }
-                                                                       .pico{
-                                                                        position:absolute;right:-26px;top:153px;
-                                                                         width:17px;height:90px;background:#181d1f;
-                                                                          border-radius:6px;transform:rotate(-12deg);
-                                                                           box-shadow:2px 2px 3px #0007;
-                                                                           }
-                                                                           .base{
-                                                                            height:15px;background:linear-gradient(#5c696b,#202a30);
-                                                                             border-radius:3px;margin:0 -8px;
-                                                                             }
-                                                                             /* Ajuste del visor */
-                                                                             .surtidor {
-                                                                               padding-bottom: 35px;
-                                                                               }
-
-                                                                               .visor {
-                                                                                 position: relative;
-                                                                                   z-index: 2;
-                                                                                   }
-
-                                                                                   /* Ajuste del visor */
-                                                                                   .surtidor {
-                                                                                     padding-bottom: 35px;
-                                                                                     }
-
-                                                                                     .visor {
-                                                                                       position: relative;
+ min-height:100dvh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ overflow-x:hidden;
+ background:radial-gradient(circle,#383a36 0%,#15191b 70%,#080b0d);
+ padding:25px 15px;
+}
+.escena{
+ position:relative;
+ width:300px;
+ max-width:80vw;
+ padding-top:90px;
+}
+.cartel{
+ position:absolute;
+ top:0;left:50%;
+ transform:translateX(-50%);
+ width:190px;height:115px;
+ border-radius:50%;
+ background:radial-gradient(ellipse,#fff5d9 45%,#d6b984);
+ border:9px ridge #956a3c;
+ box-shadow:0 0 0 5px #083d69,0 8px 12px #0009;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ z-index:5;
+}
+.cartel span{
+ font-family:Georgia,serif;
+ font-size:64px;
+ font-weight:900;
+ letter-spacing:-6px;
+ color:#103c70;
+ text-shadow:1px 2px 1px #fff8;
+}
+.surtidor{
+ position:relative;
+ width:100%;
+ height:530px;
+ border-radius:48px 48px 12px 12px;
+ border:8px ridge #8d704f;
+ background:
+ radial-gradient(ellipse at 8% 24%,#a65a27 0%,transparent 12%),
+ radial-gradient(ellipse at 91% 72%,#9c4c20 0%,transparent 14%),
+ radial-gradient(ellipse at 22% 83%,#c17b3b 0%,transparent 8%),
+ repeating-linear-gradient(110deg,transparent 0 18px,#ffffff08 19px 21px),
+ linear-gradient(95deg,#072c4a,#086098 22%,#0871ac 50%,#034674 82%,#06243e);
+ box-shadow:inset 9px 0 15px #0009,inset -8px 0 13px #0009,12px 18px 25px #000b;
+}
+.surtidor:before{
+ content:"";
+ position:absolute;inset:12px;
+ border:2px solid #d7ad6b55;
+ border-radius:35px 35px 5px 5px;
+ pointer-events:none;
+}
+.oxido{
+ position:absolute;
+ inset:0;
+ border-radius:inherit;
+ pointer-events:none;
+ opacity:.65;
+ background:
+ radial-gradient(circle at 10% 14%,#8d451d 0 2%,transparent 5%),
+ radial-gradient(circle at 88% 9%,#c08139 0 1%,transparent 4%),
+ radial-gradient(circle at 14% 65%,#7b371a 0 2%,transparent 6%),
+ radial-gradient(circle at 91% 87%,#9e541e 0 3%,transparent 8%);
+}
+.visor{
+ position:absolute;
+ top:115px;
+ left:28px;
+ right:28px;
+ padding:16px 10px 18px;
+ border:9px ridge #8b765b;
+ border-radius:24px;
+ background:
+ radial-gradient(circle at 12% 20%,#a6794240,transparent 28%),
+ linear-gradient(115deg,#b7a57d,#fff0c8 35%,#e1c99b 80%,#a38b66);
+ box-shadow:inset 0 4px 12px #0005,3px 5px 8px #0007;
+ text-align:center;
+}
+.rotulo{
+ color:#473d2b;
+ font-family:Georgia,serif;
+ font-weight:bold;
+ font-size:12px;
+ letter-spacing:3px;
+ margin:8px 0 5px;
+}
+.contador{
+ display:flex;
+ justify-content:center;
+ gap:6px;
+ margin-bottom:12px;
+}
+.digito{
+ position:relative;
+ width:48px;
+ height:57px;
+ border:4px ridge #69665a;
+ border-radius:5px;
+ overflow:hidden;
+ background:linear-gradient(#373936,#d3c8a9 15%,#f2e9cf 44%,#77766b 49%,#303632 50%,#c6bca0 56%,#e8dfc7 85%,#66685d);
+ box-shadow:inset 0 3px 6px #0009,2px 3px 4px #0006;
+}
+.digito:after{
+ content:"";
+ position:absolute;
+ top:50%;left:0;right:0;
+ height:2px;
+ background:#34352e;
+ box-shadow:0 1px 2px #fff8;
+}
+.digito span{
+ display:block;
+ line-height:49px;
+ font-size:37px;
+ font-weight:900;
+ color:#242720;
+ text-shadow:1px 1px 1px #fff8;
+}
+.digito.girando span{
+ animation:rodillo .4s ease-out;
+}
+@keyframes rodillo{
+ 0%{transform:translateY(-65%);filter:blur(2px)}
+ 65%{transform:translateY(5%);filter:blur(0)}
+ 100%{transform:translateY(0)}
+}
+.marca{
+ position:absolute;
+ bottom:35px;
+ left:50%;
+ transform:translateX(-50%);
+ width:180px;
+ text-align:center;
+ color:#f8edce;
+ text-shadow:2px 3px 3px #001e35;
+}
+.marca b{
+ display:block;
+ font-size:60px;
+ letter-spacing:-5px;
+}
+.marca .lineas{
+ width:120px;
+ margin:auto;
+ height:32px;
+ background:repeating-linear-gradient(to bottom,#f4e7c4 0 4px,transparent 4px 9px);
+ clip-path:polygon(0 0,100% 0,75% 100%,25% 100%);
+}
+.manguera{
+ position:absolute;
+ top:160px;
+ left:-48px;
+ width:65px;
+ height:305px;
+ border:11px solid #111719;
+ border-right:0;
+ border-radius:65px 0 0 65px;
+ box-shadow:-3px 2px 6px #0008;
+ z-index:-1;
+}
+.pico{
+ position:absolute;
+ top:152px;
+ left:-38px;
+ width:22px;
+ height:130px;
+ border-radius:12px;
+ background:linear-gradient(90deg,#4d504e,#d1c6aa,#5c5d55);
+ transform:rotate(15deg);
+ box-shadow:2px 2px 5px #0008;
+}
+.base{
+ height:20px;
+ margin:0 -10px;
+ border-radius:4px;
+ border:4px ridge #a17c4d;
+ background:linear-gradient(#a57948,#3a332d);
+ box-shadow:0 9px 12px #0008;
+}
+@media(max-height:700px){
+ .escena{transform:scale(.83)}
+}
+</style>
+</head>
+<body>
+<div class="escena">
+ <div class="cartel"><span>YPF</span></div>
+ <div class="manguera"></div>
+ <div class="pico"></div>
+ <div class="surtidor">
+  <div class="oxido"></div>
+  <div class="visor">
+   <div class="rotulo">HORAS</div>
+   <div class="contador" id="horas">
+    <div class="digito"><span>0</span></div>
+    <div class="digito"><span>0</span></div>
+   </div>
+   <div class="rotulo">MINUTOS</div>
+   <div class="contador" id="minutos">
+    <div class="digito"><span>0</span></div>
+    <div class="digito"><span>0</span></div>
+   </div>
+   <div class="rotulo">SEGUNDOS</div>
+   <div class="contador" id="segundos">
+    <div class="digito"><span>0</span></div>
+    <div class="digito"><span>0</span></div>
+   </div>
+  </div>
+  <div class="marca">
+   <b>YPF</b>
+   <div class="lineas"></div>
+  </div>
+ </div>
+ <div class="base"></div>
+</div>
+<script>
+function actualizarGrupo(id,valor){
+ const elementos=document.querySelectorAll("#"+id+" .digito");
+ const numeros=String(valor).padStart(2,"0");
+ elementos.forEach((elemento,i)=>{
+  const span=elemento.querySelector("span");
+  if(span.textContent!==numeros[i]){
+   span.textContent=numeros[i];
+   elemento.classList.remove("girando");
+   void elemento.offsetWidth;
+   elemento.classList.add("girando");
+  }
+ });
+}
+function actualizarReloj(){
+ const ahora=new Date();
+ actualizarGrupo("horas",ahora.getHours());
+ actualizarGrupo("minutos",ahora.getMinutes());
+ actualizarGrupo("segundos",ahora.getSeconds());
+}
+actualizarReloj();
+setInterval(actualizarReloj,250);
+</script>
+</body>
+</html>
+position: relative;
                                                                                          z-index: 2;
                                                                                          }
 
