@@ -6,210 +6,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#05090d">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Reloj YPF">
 <title>Reloj YPF Vintage</title>
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" href="./icon-192.png">
 
 <style>
-  * {
-    box-sizing: border-box;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  html, body {
-    margin: 0;
-    width: 100%;
-    min-height: 100%;
-  }
+html, body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
 
-  body {
-    background: #05090d;
-    color: #f4e6c7;
-    font-family: Georgia, "Times New Roman", serif;
-    overflow-x: hidden;
-  }
+body {
+  background: #05090d;
+  color: #f5ead2;
+  font-family: Georgia, serif;
+  overflow-x: hidden;
+}
 
-  .pantalla {
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 0;
-  }
+.pantalla {
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 0;
+}
 
-  /*
-    La imagen original es cuadrada.
-    Todas las posiciones se calculan en
-    porcentajes para conservar la proporción.
-  */
-  .reloj {
-    position: relative;
-    width: min(100vw, 640px);
-    aspect-ratio: 1 / 1;
-    flex-shrink: 0;
-    background-image: url("./icon-512.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    isolation: isolate;
-  }
+/* Fotografía original del surtidor */
+.reloj {
+  position: relative;
+  width: min(100vw, 640px);
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  background: url("./icon-512.png") center / 100% 100% no-repeat;
+  isolation: isolate;
+}
 
-  /*
-    Panel sobre el visor original.
-    Se mantiene dentro del cuerpo del surtidor.
-  */
+/*
+  Visor ampliado.
+  Conserva su posición dentro del surtidor.
+*/
+.visor {
+  position: absolute;
+  z-index: 3;
+  left: 41.2%;
+  top: 32.4%;
+  width: 24.5%;
+  height: 26.8%;
+  padding: 2.2% 1% 1.5%;
+  border: 2px solid #75502c;
+  border-radius: 9%;
+  background:
+    radial-gradient(
+      ellipse at 45% 20%,
+      #fff2d1 0%,
+      #e4c58f 65%,
+      #b88b54 100%
+    );
+  box-shadow:
+    inset 0 0 0 1px #ffebb8,
+    inset 0 0 8px #65421e88,
+    0 2px 5px #0009;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.fila {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-height: 0;
+}
+
+.rotulo {
+  font-family: Arial, sans-serif;
+  font-size: clamp(6px, 1.65vw, 11px);
+  font-weight: 900;
+  letter-spacing: .6px;
+  color: #392817;
+  line-height: 1;
+  text-shadow: 0 1px #fff8;
+}
+
+.contador {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
+}
+
+.digito {
+  position: relative;
+  width: 34%;
+  aspect-ratio: .95;
+  overflow: hidden;
+  border: 1px solid #6e5a40;
+  border-radius: 3px;
+  background: linear-gradient(
+    to bottom,
+    #080808,
+    #252420 42%,
+    #050505 49%,
+    #494640 50%,
+    #171717 55%,
+    #080808
+  );
+  box-shadow:
+    inset 2px 0 3px #000,
+    inset -2px 0 3px #000,
+    0 2px 3px #0008;
+}
+
+.numero {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: "Courier New", monospace;
+  font-size: clamp(13px, 4.6vw, 30px);
+  font-weight: bold;
+  color: #fff2d7;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 3px #fff5;
+}
+
+.digito::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #000;
+  box-shadow: 0 1px #ffffff35;
+  pointer-events: none;
+}
+
+.numero.girando {
+  animation: rodillo .38s ease-out;
+}
+
+@keyframes rodillo {
+  0% {
+    transform: translateY(-42%);
+    filter: blur(1.5px);
+    opacity: .5;
+  }
+  65% {
+    transform: translateY(5%);
+    filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 390px) {
   .visor {
-    position: absolute;
-    z-index: 2;
-    left: 43.1%;
-    top: 34.3%;
-    width: 20.7%;
-    height: 23.7%;
-    border-radius: 10%;
-    padding: 5% 1.5% 1.2%;
-    background:
-      radial-gradient(
-        ellipse at 50% 25%,
-        #fff3d0,
-        #e3bf85 65%,
-        #b58a56 100%
-      );
-    border: 2px solid #7b532d;
-    box-shadow:
-      inset 0 0 0 1px #fce3a8,
-      inset 0 0 9px #66401b88,
-      0 0 3px #0009;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    border-width: 1px;
   }
 
-  .fila {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .contador {
     gap: 2px;
   }
 
   .rotulo {
-    color: #312719;
-    font-family: Arial, sans-serif;
-    font-weight: 900;
-    font-size: clamp(5px, 1.25vw, 9px);
-    line-height: 1;
-    letter-spacing: .8px;
-    text-align: center;
-    text-shadow: 0 1px #fff8;
-  }
-
-  .contador {
-    display: flex;
-    justify-content: center;
-    gap: 2px;
-    width: 100%;
-  }
-
-  .digito {
-    position: relative;
-    width: 24%;
-    aspect-ratio: .78;
-    overflow: hidden;
-    border-radius: 2px;
-    border: 1px solid #98764d;
-    background:
-      linear-gradient(
-        to bottom,
-        #090909 0%,
-        #24221e 45%,
-        #050505 49%,
-        #44413b 50%,
-        #171717 54%,
-        #090909 100%
-      );
-    box-shadow:
-      inset 1px 0 3px #000,
-      inset -1px 0 3px #000,
-      0 1px 2px #0008;
+    font-size: 1.7vw;
   }
 
   .numero {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-    font-size: clamp(10px, 3.2vw, 22px);
-    color: #f8eed8;
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-    text-shadow: 0 0 3px #ffffff55;
+    font-size: 4.8vw;
   }
+}
 
-  .digito::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    height: 1px;
-    background: #000;
-    box-shadow: 0 1px #ffffff25;
-    pointer-events: none;
-  }
-
+/* Evita animaciones si Android las tiene reducidas */
+@media (prefers-reduced-motion: reduce) {
   .numero.girando {
-    animation: giro .36s ease-out;
+    animation: none;
   }
-
-  @keyframes giro {
-    0% {
-      transform: translateY(-45%);
-      filter: blur(1.5px);
-      opacity: .45;
-    }
-
-    65% {
-      transform: translateY(5%);
-      filter: blur(0);
-      opacity: 1;
-    }
-
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  /*
-    En pantallas pequeñas, el reloj
-    utiliza todo el ancho disponible.
-  */
-  @media (max-width: 390px) {
-    .visor {
-      border-width: 1px;
-    }
-
-    .contador {
-      gap: 1px;
-    }
-
-    .rotulo {
-      font-size: 1.35vw;
-    }
-
-    .numero {
-      font-size: 3.4vw;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .numero.girando {
-      animation: none;
-    }
-  }
+}
 </style>
 </head>
 
@@ -218,6 +205,7 @@
   <div class="reloj" aria-label="Reloj YPF vintage">
 
     <div class="visor">
+
       <div class="fila">
         <div class="rotulo">HORAS</div>
         <div class="contador" id="horas"></div>
@@ -232,6 +220,7 @@
         <div class="rotulo">SEGUNDOS</div>
         <div class="contador" id="segundos"></div>
       </div>
+
     </div>
 
   </div>
@@ -305,7 +294,6 @@
   }
 
   actualizar();
-
   setInterval(actualizar, 200);
 
   document.addEventListener(
