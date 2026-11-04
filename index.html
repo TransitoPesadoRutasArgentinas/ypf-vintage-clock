@@ -1,176 +1,181 @@
-    
+                           position: absolute;
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#102c45">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102b43">
 <title>Reloj YPF Vintage</title>
 <link rel="manifest" href="./manifest.json">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Georgia,serif}
+html,body{margin:0;min-height:100%}
 body{
  min-height:100dvh;
  display:flex;
- align-items:center;
  justify-content:center;
- overflow-x:hidden;
- background:radial-gradient(circle,#383a36 0%,#15191b 70%,#080b0d);
- padding:25px 15px;
+ align-items:center;
+ overflow:hidden;
+ background:radial-gradient(circle,#45423b,#171b1c 75%);
+ font-family:Georgia,serif;
 }
 .escena{
  position:relative;
- width:300px;
- max-width:80vw;
- padding-top:90px;
+ width:310px;
+ height:650px;
+ transform:scale(min(1,calc(100vw / 390),calc(100dvh / 710)));
+ transform-origin:center;
+ flex-shrink:0;
 }
 .cartel{
  position:absolute;
- top:0;left:50%;
+ top:15px;
+ left:50%;
  transform:translateX(-50%);
- width:190px;height:115px;
+ width:195px;
+ height:125px;
  border-radius:50%;
- background:radial-gradient(ellipse,#fff5d9 45%,#d6b984);
- border:9px ridge #956a3c;
- box-shadow:0 0 0 5px #083d69,0 8px 12px #0009;
+ background:radial-gradient(ellipse,#fff5d8 40%,#d9bc89);
+ border:9px ridge #986b39;
+ box-shadow:0 0 0 5px #063d70,0 8px 12px #0009;
  display:flex;
  align-items:center;
  justify-content:center;
  z-index:5;
 }
 .cartel span{
- font-family:Georgia,serif;
- font-size:64px;
+ font-size:66px;
  font-weight:900;
  letter-spacing:-6px;
- color:#103c70;
- text-shadow:1px 2px 1px #fff8;
+ color:#103c72;
 }
 .surtidor{
- position:relative;
- width:100%;
- height:530px;
- border-radius:48px 48px 12px 12px;
- border:8px ridge #8d704f;
+ position:absolute;
+ top:112px;
+ left:15px;
+ width:280px;
+ height:510px;
+ border:9px ridge #97744a;
+ border-radius:45px 45px 12px 12px;
  background:
- radial-gradient(ellipse at 8% 24%,#a65a27 0%,transparent 12%),
- radial-gradient(ellipse at 91% 72%,#9c4c20 0%,transparent 14%),
- radial-gradient(ellipse at 22% 83%,#c17b3b 0%,transparent 8%),
- repeating-linear-gradient(110deg,transparent 0 18px,#ffffff08 19px 21px),
- linear-gradient(95deg,#072c4a,#086098 22%,#0871ac 50%,#034674 82%,#06243e);
- box-shadow:inset 9px 0 15px #0009,inset -8px 0 13px #0009,12px 18px 25px #000b;
+ radial-gradient(circle at 10% 20%,#a45b29 0%,transparent 12%),
+ radial-gradient(circle at 90% 70%,#93471f 0%,transparent 14%),
+ radial-gradient(circle at 20% 88%,#bb7938 0%,transparent 9%),
+ repeating-linear-gradient(110deg,transparent 0 18px,#ffffff09 19px 21px),
+ linear-gradient(95deg,#062b49,#08619a 24%,#0873af 52%,#03416d);
+ box-shadow:inset 8px 0 14px #0008,
+ inset -8px 0 14px #0008,
+ 12px 17px 22px #000a;
 }
 .surtidor:before{
  content:"";
- position:absolute;inset:12px;
- border:2px solid #d7ad6b55;
- border-radius:35px 35px 5px 5px;
- pointer-events:none;
-}
-.oxido{
  position:absolute;
- inset:0;
- border-radius:inherit;
+ inset:12px;
+ border:2px solid #d7ad6b55;
+ border-radius:30px 30px 5px 5px;
  pointer-events:none;
- opacity:.65;
- background:
- radial-gradient(circle at 10% 14%,#8d451d 0 2%,transparent 5%),
- radial-gradient(circle at 88% 9%,#c08139 0 1%,transparent 4%),
- radial-gradient(circle at 14% 65%,#7b371a 0 2%,transparent 6%),
- radial-gradient(circle at 91% 87%,#9e541e 0 3%,transparent 8%);
 }
 .visor{
  position:absolute;
- top:115px;
- left:28px;
- right:28px;
- padding:16px 10px 18px;
- border:9px ridge #8b765b;
- border-radius:24px;
+ top:102px;
+ left:22px;
+ right:22px;
+ padding:12px 8px;
+ border:8px ridge #8d7655;
+ border-radius:22px;
  background:
- radial-gradient(circle at 12% 20%,#a6794240,transparent 28%),
- linear-gradient(115deg,#b7a57d,#fff0c8 35%,#e1c99b 80%,#a38b66);
+ radial-gradient(circle at 15% 20%,#a6794240,transparent 30%),
+ linear-gradient(115deg,#b6a37d,#fff0ca 35%,#e1c99b 80%,#a38b66);
  box-shadow:inset 0 4px 12px #0005,3px 5px 8px #0007;
  text-align:center;
 }
 .rotulo{
- color:#473d2b;
- font-family:Georgia,serif;
+ font-size:11px;
  font-weight:bold;
- font-size:12px;
  letter-spacing:3px;
- margin:8px 0 5px;
+ color:#443b2d;
+ margin:5px 0;
 }
 .contador{
  display:flex;
  justify-content:center;
- gap:6px;
- margin-bottom:12px;
+ gap:7px;
+ margin:5px 0 10px;
 }
 .digito{
  position:relative;
- width:48px;
- height:57px;
- border:4px ridge #69665a;
- border-radius:5px;
+ width:43px;
+ height:48px;
  overflow:hidden;
- background:linear-gradient(#373936,#d3c8a9 15%,#f2e9cf 44%,#77766b 49%,#303632 50%,#c6bca0 56%,#e8dfc7 85%,#66685d);
- box-shadow:inset 0 3px 6px #0009,2px 3px 4px #0006;
+ border:3px ridge #67675f;
+ border-radius:5px;
+ background:linear-gradient(
+ #55564f 0%,
+ #e2d9bf 18%,
+ #f4ead2 46%,
+ #6b6d63 49%,
+ #343832 50%,
+ #d3c9af 55%,
+ #eee3c8 83%,
+ #77776b 100%);
+ box-shadow:inset 0 3px 6px #0008,2px 3px 4px #0006;
 }
 .digito:after{
  content:"";
  position:absolute;
- top:50%;left:0;right:0;
+ top:50%;
+ left:0;
+ right:0;
  height:2px;
- background:#34352e;
- box-shadow:0 1px 2px #fff8;
+ background:#333831;
+ pointer-events:none;
 }
 .digito span{
  display:block;
- line-height:49px;
- font-size:37px;
+ line-height:42px;
+ font-size:34px;
  font-weight:900;
  color:#242720;
- text-shadow:1px 1px 1px #fff8;
+ text-shadow:1px 1px #fff9;
 }
 .digito.girando span{
- animation:rodillo .4s ease-out;
+ animation:giro .38s ease-out;
 }
-@keyframes rodillo{
+@keyframes giro{
  0%{transform:translateY(-65%);filter:blur(2px)}
  65%{transform:translateY(5%);filter:blur(0)}
  100%{transform:translateY(0)}
 }
 .marca{
  position:absolute;
- bottom:35px;
+ bottom:30px;
  left:50%;
  transform:translateX(-50%);
- width:180px;
+ color:#f7ebca;
  text-align:center;
- color:#f8edce;
- text-shadow:2px 3px 3px #001e35;
+ text-shadow:2px 3px 3px #001d35;
 }
 .marca b{
  display:block;
- font-size:60px;
+ font-size:57px;
  letter-spacing:-5px;
 }
-.marca .lineas{
- width:120px;
+.lineas{
+ width:110px;
+ height:27px;
  margin:auto;
- height:32px;
- background:repeating-linear-gradient(to bottom,#f4e7c4 0 4px,transparent 4px 9px);
+ background:repeating-linear-gradient(
+ to bottom,#f4e7c4 0 4px,transparent 4px 9px);
  clip-path:polygon(0 0,100% 0,75% 100%,25% 100%);
 }
 .manguera{
  position:absolute;
- top:160px;
- left:-48px;
- width:65px;
- height:305px;
- border:11px solid #111719;
+ top:250px;
+ left:-26px;
+ width:70px;
+ height:270px;
+ border:11px solid #15191a;
  border-right:0;
  border-radius:65px 0 0 65px;
  box-shadow:-3px 2px 6px #0008;
@@ -178,25 +183,25 @@ body{
 }
 .pico{
  position:absolute;
- top:152px;
- left:-38px;
- width:22px;
- height:130px;
+ top:230px;
+ left:-16px;
+ width:20px;
+ height:115px;
  border-radius:12px;
- background:linear-gradient(90deg,#4d504e,#d1c6aa,#5c5d55);
- transform:rotate(15deg);
+ background:linear-gradient(90deg,#555852,#d1c6aa,#535750);
+ transform:rotate(14deg);
  box-shadow:2px 2px 5px #0008;
 }
 .base{
+ position:absolute;
+ bottom:17px;
+ left:4px;
+ width:302px;
  height:20px;
- margin:0 -10px;
- border-radius:4px;
  border:4px ridge #a17c4d;
- background:linear-gradient(#a57948,#3a332d);
+ border-radius:5px;
+ background:linear-gradient(#a57948,#38312c);
  box-shadow:0 9px 12px #0008;
-}
-@media(max-height:700px){
- .escena{transform:scale(.83)}
 }
 </style>
 </head>
@@ -205,25 +210,28 @@ body{
  <div class="cartel"><span>YPF</span></div>
  <div class="manguera"></div>
  <div class="pico"></div>
+
  <div class="surtidor">
-  <div class="oxido"></div>
   <div class="visor">
    <div class="rotulo">HORAS</div>
    <div class="contador" id="horas">
     <div class="digito"><span>0</span></div>
     <div class="digito"><span>0</span></div>
    </div>
+
    <div class="rotulo">MINUTOS</div>
    <div class="contador" id="minutos">
     <div class="digito"><span>0</span></div>
     <div class="digito"><span>0</span></div>
    </div>
+
    <div class="rotulo">SEGUNDOS</div>
    <div class="contador" id="segundos">
     <div class="digito"><span>0</span></div>
     <div class="digito"><span>0</span></div>
    </div>
   </div>
+
   <div class="marca">
    <b>YPF</b>
    <div class="lineas"></div>
@@ -231,17 +239,18 @@ body{
  </div>
  <div class="base"></div>
 </div>
+
 <script>
 function actualizarGrupo(id,valor){
- const elementos=document.querySelectorAll("#"+id+" .digito");
- const numeros=String(valor).padStart(2,"0");
- elementos.forEach((elemento,i)=>{
-  const span=elemento.querySelector("span");
-  if(span.textContent!==numeros[i]){
-   span.textContent=numeros[i];
-   elemento.classList.remove("girando");
-   void elemento.offsetWidth;
-   elemento.classList.add("girando");
+ const digitos=document.querySelectorAll("#"+id+" .digito");
+ const texto=String(valor).padStart(2,"0");
+ digitos.forEach((digito,i)=>{
+  const span=digito.querySelector("span");
+  if(span.textContent!==texto[i]){
+   span.textContent=texto[i];
+   digito.classList.remove("girando");
+   void digito.offsetWidth;
+   digito.classList.add("girando");
   }
  });
 }
@@ -256,41 +265,7 @@ setInterval(actualizarReloj,250);
 </script>
 </body>
 </html>
-position: relative;
-                                                                                         z-index: 2;
-                                                                                         }
-
-                                                                                    /* Emblema inferior más abajo */
-                                                                                    .marca {
-                                                                                      transform: translateY(55px);
-                                                                                      }
-
-                                                                                  /* RODILLOS MECÁNICOS ANTIGUOS */
-                                                                                  .digito {
-                                                                                    background: linear-gradient(
-                                                                                        to bottom,
-                                                                                            #77766c 0%,
-                                                                                                #e5dfc9 18%,
-                                                                                                    #f4eedb 45%,
-                                                                                                        #a5a394 49%,
-                                                                                                            #555850 50%,
-                                                                                                                #d9d4bf 54%,
-                                                                                                                    #f0ead7 82%,
-                                                                                                                        #85867c 100%
-                                                                                                                          ) !important;
-                                                                                                                            border: 3px solid #666b68 !important;
-                                                                                                                              border-radius: 5px !important;
-                                                                                                                                box-shadow:
-                                                                                                                                    inset 0 3px 7px #3338,
-                                                                                                                                        inset 0 -4px 6px #3337,
-                                                                                                                                            1px 2px 3px #0005 !important;
-                                                                                                                                              overflow: hidden;
-                                                                                                                                              }
-
-                                                                                                                                              .digito::after {
-                                                                                                                                                content: "";
-                                                                                                                                                  position: absolute;
-                                                                                                                                                    left: 0;
+left: 0;
                                                                                                                                                       right: 0;
                                                                                                                                                         top: 50%;
                                                                                                                                                           height: 2px;
