@@ -345,5 +345,15 @@ body {
 })();
 </script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js")
+            .then(() => console.log("Reloj YPF registrado"))
+                  .catch(error => console.error(error));
+                    });
+                    }
+                    </script>
+                    
 </body>
 </html>
