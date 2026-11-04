@@ -46,10 +46,7 @@ body {
   isolation: isolate;
 }
 
-/*
-  Visor ampliado.
-  Conserva su posición dentro del surtidor.
-*/
+/* Visor centrado sobre el panel crema */
 .visor {
   position: absolute;
   z-index: 3;
@@ -57,59 +54,88 @@ body {
   top: 32.4%;
   width: 24.5%;
   height: 26.8%;
-  padding: 2.2% 1% 1.5%;
-  border: 2px solid #75502c;
-  border-radius: 9%;
-  background:
-    radial-gradient(
-      ellipse at 45% 20%,
-      #fff2d1 0%,
-      #e4c58f 65%,
-      #b88b54 100%
-    );
+
+  border: 1px solid #75502c;
+  border-radius: 7%;
+
+  background: radial-gradient(
+    ellipse at 45% 20%,
+    #fff2d1 0%,
+    #e4c58f 65%,
+    #b88b54 100%
+  );
+
   box-shadow:
     inset 0 0 0 1px #ffebb8,
     inset 0 0 8px #65421e88,
     0 2px 5px #0009;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+
+  /* Tres filas de igual altura */
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  justify-items: center;
+
+  padding: 3% 2%;
+  gap: 1%;
+  overflow: hidden;
 }
 
+/* Cada fila ocupa exactamente un tercio */
 .fila {
   width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  min-height: 0;
+  justify-content: center;
+
+  gap: 4%;
+  overflow: hidden;
 }
 
+/* Rótulos */
 .rotulo {
+  flex: 0 0 auto;
+  width: 100%;
+  text-align: center;
+
   font-family: Arial, sans-serif;
-  font-size: clamp(6px, 1.65vw, 11px);
+  font-size: clamp(5px, 1.45vw, 9px);
   font-weight: 900;
-  letter-spacing: .6px;
-  color: #392817;
+  letter-spacing: 0;
   line-height: 1;
+
+  color: #392817;
   text-shadow: 0 1px #fff8;
 }
 
+/* Contenedor de los dos rodillos */
 .contador {
-  width: 100%;
+  flex: 1 1 auto;
+  width: 88%;
+  min-height: 0;
+
   display: flex;
   justify-content: center;
-  gap: 3px;
+  align-items: stretch;
+  gap: 4%;
 }
 
+/* Rodillos mecánicos */
 .digito {
   position: relative;
-  width: 34%;
-  aspect-ratio: .95;
+  flex: 0 1 42%;
+  min-width: 0;
+  height: 100%;
+
   overflow: hidden;
   border: 1px solid #6e5a40;
   border-radius: 3px;
+
   background: linear-gradient(
     to bottom,
     #080808,
@@ -119,26 +145,32 @@ body {
     #171717 55%,
     #080808
   );
+
   box-shadow:
     inset 2px 0 3px #000,
     inset -2px 0 3px #000,
     0 2px 3px #0008;
 }
 
+/* Números centrados */
 .numero {
   position: absolute;
   inset: 0;
+
   display: grid;
   place-items: center;
+
   font-family: "Courier New", monospace;
-  font-size: clamp(13px, 4.6vw, 30px);
+  font-size: clamp(11px, 3.2vw, 20px);
   font-weight: bold;
-  color: #fff2d7;
   line-height: 1;
+
+  color: #fff2d7;
   font-variant-numeric: tabular-nums;
   text-shadow: 0 0 3px #fff5;
 }
 
+/* Línea central del rodillo */
 .digito::after {
   content: "";
   position: absolute;
@@ -151,6 +183,7 @@ body {
   pointer-events: none;
 }
 
+/* Movimiento mecánico */
 .numero.girando {
   animation: rodillo .38s ease-out;
 }
@@ -161,37 +194,39 @@ body {
     filter: blur(1.5px);
     opacity: .5;
   }
+
   65% {
     transform: translateY(5%);
     filter: blur(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(0);
+    filter: blur(0);
     opacity: 1;
   }
 }
 
-/* Pantallas pequeñas */
+/* Ajuste para pantallas pequeñas */
 @media (max-width: 390px) {
   .visor {
     border-width: 1px;
   }
 
-  .contador {
-    gap: 2px;
-  }
-
   .rotulo {
-    font-size: 1.7vw;
+    font-size: 1.45vw;
   }
 
   .numero {
-    font-size: 4.8vw;
+    font-size: 3.2vw;
+  }
+
+  .digito {
+    border-width: 1px;
   }
 }
 
-/* Evita animaciones si Android las tiene reducidas */
 @media (prefers-reduced-motion: reduce) {
   .numero.girando {
     animation: none;
@@ -201,10 +236,12 @@ body {
 </head>
 
 <body>
+
 <main class="pantalla">
+
   <div class="reloj" aria-label="Reloj YPF vintage">
 
-    <div class="visor">
+    <div class="visor" role="timer">
 
       <div class="fila">
         <div class="rotulo">HORAS</div>
@@ -224,6 +261,7 @@ body {
     </div>
 
   </div>
+
 </main>
 
 <script>
@@ -266,7 +304,9 @@ body {
         numeros[i].textContent = valor[i];
 
         numeros[i].classList.remove("girando");
+
         void numeros[i].offsetWidth;
+
         numeros[i].classList.add("girando");
       }
     }
@@ -294,13 +334,16 @@ body {
   }
 
   actualizar();
+
   setInterval(actualizar, 200);
 
   document.addEventListener(
     "visibilitychange",
     actualizar
   );
+
 })();
 </script>
+
 </body>
 </html>
