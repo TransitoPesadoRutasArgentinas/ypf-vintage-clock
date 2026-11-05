@@ -1,5 +1,5 @@
 
-const CACHE = "ypf-vintage-v1";
+const CACHE = "ypf-vintage-v2";
 
 const ARCHIVOS = [
   "./",
