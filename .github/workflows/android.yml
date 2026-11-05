@@ -18,7 +18,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-            - name: Preparar Android
+      - name: Preparar Android
         run: |
           echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> "$GITHUB_ENV"
           yes | sdkmanager --licenses > /dev/null || true
