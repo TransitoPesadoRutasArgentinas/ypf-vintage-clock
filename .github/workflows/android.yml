@@ -23,7 +23,7 @@ jobs:
 
       - name: Crear proyecto Android
         run: |
-        mkdir -p app/src/main/assets
+          mkdir -p app/src/main/assets
           mkdir -p app/src/main/java/com/relojypf/vintage
 
           cp index.html app/src/main/assets/
@@ -31,18 +31,18 @@ jobs:
 
           cat > settings.gradle <<'EOF'
           pluginManagement {
-              repositories {
-                  google()
-                  mavenCentral()
-                  gradlePluginPortal()
-              }
+          repositories {
+          google()
+          mavenCentral()
+          gradlePluginPortal()
+          }
           }
           dependencyResolutionManagement {
-              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-              repositories {
-                  google()
-                  mavenCentral()
-              }
+          repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+          repositories {
+          google()
+          mavenCentral()
+          }
           }
           rootProject.name = 'RelojYPF'
           include ':app'
@@ -50,44 +50,44 @@ jobs:
 
           cat > build.gradle <<'EOF'
           plugins {
-              id 'com.android.application' version '8.5.2' apply false
+          id 'com.android.application' version '8.5.2' apply false
           }
           EOF
 
           cat > app/build.gradle <<'EOF'
           plugins {
-              id 'com.android.application'
+          id 'com.android.application'
           }
 
           android {
-              namespace 'com.relojypf.vintage'
-              compileSdk 35
+          namespace 'com.relojypf.vintage'
+          compileSdk 35
 
-              defaultConfig {
-                  applicationId 'com.relojypf.vintage'
-                  minSdk 24
-                  targetSdk 28
-                  versionCode 1
-                  versionName '1.0'
-              }
+          defaultConfig {
+          applicationId 'com.relojypf.vintage'
+          minSdk 24
+          targetSdk 28
+          versionCode 1
+          versionName '1.0'
+          }
           }
           EOF
 
           cat > app/src/main/AndroidManifest.xml <<'EOF'
           <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-              <application
-                  android:label="Reloj YPF Vintage"
-                  android:theme="@android:style/Theme.Material.Light.NoActionBar"
-                  android:usesCleartextTraffic="false">
-                  <activity
-                      android:name=".MainActivity"
-                      android:exported="true">
-                      <intent-filter>
-                          <action android:name="android.intent.action.MAIN"/>
-                          <category android:name="android.intent.category.LAUNCHER"/>
-                      </intent-filter>
-                  </activity>
-              </application>
+          <application
+          android:label="Reloj YPF Vintage"
+          android:theme="@android:style/Theme.Material.Light.NoActionBar"
+          android:usesCleartextTraffic="false">
+          <activity
+          android:name=".MainActivity"
+          android:exported="true">
+          <intent-filter>
+          <action android:name="android.intent.action.MAIN"/>
+          <category android:name="android.intent.category.LAUNCHER"/>
+          </intent-filter>
+          </activity>
+          </application>
           </manifest>
           EOF
 
@@ -101,25 +101,25 @@ jobs:
           import android.webkit.WebSettings;
 
           public class MainActivity extends Activity {
-              private WebView web;
+          private WebView web;
 
-              @Override
-              public void onCreate(Bundle state) {
-                  super.onCreate(state);
-                  web = new WebView(this);
-                  web.setWebViewClient(new WebViewClient());
-                  WebSettings settings = web.getSettings();
-                  settings.setJavaScriptEnabled(true);
-                  settings.setAllowFileAccess(true);
-                  setContentView(web);
-                  web.loadUrl("file:///android_asset/index.html");
-              }
+          @Override
+          public void onCreate(Bundle state) {
+          super.onCreate(state);
+          web = new WebView(this);
+          web.setWebViewClient(new WebViewClient());
+          WebSettings settings = web.getSettings();
+          settings.setJavaScriptEnabled(true);
+          settings.setAllowFileAccess(true);
+          setContentView(web);
+          web.loadUrl("file:///android_asset/index.html");
+          }
 
-              @Override
-              protected void onDestroy() {
-                  web.destroy();
-                  super.onDestroy();
-              }
+          @Override
+          protected void onDestroy() {
+          web.destroy();
+          super.onDestroy();
+          }
           }
           EOF
 
