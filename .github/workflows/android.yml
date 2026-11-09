@@ -121,6 +121,9 @@ jobs:
           }
           EOF
 
+      - name: Preparar widget YPF
+        run: python3 .github/scripts/widget_ypf.py
+
       - name: Compilar APK
         run: |
           gradle :app:assembleDebug --no-daemon
