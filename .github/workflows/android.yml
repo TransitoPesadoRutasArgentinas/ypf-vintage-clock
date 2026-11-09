@@ -18,8 +18,6 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Preparar Android
-        uses: android-actions/setup-android@v3
 
       - name: Crear proyecto Android
         run: |
